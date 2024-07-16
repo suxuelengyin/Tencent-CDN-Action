@@ -1,7 +1,6 @@
 /**
  * The entrypoint for the action.
  */
-import { run } from './main'
-
+const { run } = require('./main')
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
 run()

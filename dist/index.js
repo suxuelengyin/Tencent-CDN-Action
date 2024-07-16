@@ -38146,52 +38146,21 @@ module.exports.implForWrapper = function (wrapper) {
 /***/ }),
 
 /***/ 399:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+/***/ ((__unused_webpack_module, exports, __nccwpck_require__) => {
 
 "use strict";
 
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.run = run;
-const core = __importStar(__nccwpck_require__(2186));
-const params_1 = __nccwpck_require__(1873);
-const cdn_1 = __importDefault(__nccwpck_require__(465));
-const CDN_CLIENT = cdn_1.default.cdn.v20180606.Client;
-/**
- * The main function for the action.
- * @returns {Promise<void>} Resolves when the action is complete.
- */
+const core = __nccwpck_require__(2186);
+const CDN_SDK = __nccwpck_require__(465);
+const CDN_CLIENT = CDN_SDK.cdn.v20180606.Client;
 async function run() {
     try {
-        const secret_id = core.getInput(params_1.InputParams.SecretID);
-        const secret_key = core.getInput(params_1.InputParams.SecretKey);
-        const urls = core.getInput(params_1.InputParams.URLS);
-        const paths = core.getInput(params_1.InputParams.PATHS);
+        const secret_id = core.getInput('secret_id');
+        const secret_key = core.getInput('secret_key');
+        const urls = core.getInput('urls');
+        const paths = core.getInput('paths');
         const clientConfig = {
             credential: {
                 secretId: secret_id,
@@ -38228,24 +38197,6 @@ async function run() {
             core.setFailed(error.message);
     }
 }
-
-
-/***/ }),
-
-/***/ 1873:
-/***/ ((__unused_webpack_module, exports) => {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.InputParams = void 0;
-var InputParams;
-(function (InputParams) {
-    InputParams["SecretID"] = "secret_id";
-    InputParams["SecretKey"] = "secret_key";
-    InputParams["URLS"] = "urls";
-    InputParams["PATHS"] = "paths";
-})(InputParams || (exports.InputParams = InputParams = {}));
 
 
 /***/ }),
@@ -40187,9 +40138,9 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 /**
  * The entrypoint for the action.
  */
-const main_1 = __nccwpck_require__(399);
+const { run } = __nccwpck_require__(399);
 // eslint-disable-next-line @typescript-eslint/no-floating-promises
-(0, main_1.run)();
+run();
 
 })();
 

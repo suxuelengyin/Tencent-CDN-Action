@@ -1,21 +1,15 @@
-import * as core from '@actions/core'
-import { wait } from './wait'
-import { InputParams } from './params'
-import CDN_SDK from 'tencentcloud-sdk-nodejs/tencentcloud/services/cdn'
-import { ClientConfig } from 'tencentcloud-sdk-nodejs/tencentcloud/common/interface'
+const core = require('@actions/core')
+const CDN_SDK = require('tencentcloud-sdk-nodejs/tencentcloud/services/cdn')
 
 const CDN_CLIENT = CDN_SDK.cdn.v20180606.Client
-/**
- * The main function for the action.
- * @returns {Promise<void>} Resolves when the action is complete.
- */
+
 export async function run(): Promise<void> {
   try {
-    const secret_id: string = core.getInput(InputParams.SecretID)
-    const secret_key: string = core.getInput(InputParams.SecretKey)
-    const urls: string = core.getInput(InputParams.URLS)
-    const paths: string = core.getInput(InputParams.PATHS)
-    const clientConfig: ClientConfig = {
+    const secret_id: string = core.getInput('secret_id')
+    const secret_key: string = core.getInput('secret_key')
+    const urls: string = core.getInput('urls')
+    const paths: string = core.getInput('paths')
+    const clientConfig = {
       credential: {
         secretId: secret_id,
         secretKey: secret_key
